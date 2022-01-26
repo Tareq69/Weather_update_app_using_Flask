@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{form.location.label}} 
+            {{form.location(class="form-control")}}    
+          </div>
+          {{form.submit(class="btn btn-lg btn-primary btn-block")}}
+</form>
+
+
+{% if r %}
+
+<h4 class="pt-5">Live weather update for {{location}}</h4>
+<table class="table">
+    <thead>
+      <tr>
+        <th class="table-dark" scope="col">City</th>
+        <th class="table-dark" scope="col">Temperature</th>
+        <th class="table-dark" scope="col">Feels_Like</th>
+        <th class="table-dark" scope="col">Humidity</th>
+        <th class="table-dark" scope="col">Wind speed</th>
+        <th class="table-dark" scope="col">Sky Condition</th>
+      </tr>
+     
+    </thead>
+    <tbody>
+      <tr>
+        <td class="table-primary">{{location}}</td>
+        <td class="table-primary">{{fr[0][0]}}&#176c</td>
+        <td class="table-primary">{{fr[2][0]}}&#176c</td>
+        <td class="table-primary">{{fr[1][0]}}</td>
+        <td class="table-primary">{{fr[3][0]}}Kph</td>
+        <td class="table-primary">{{fr[4][0]}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="button" class="btn btn-info" value="Search For another City" onClick="document.location.reload(true)">
+  {% endif %}
+
+{% endblock %}

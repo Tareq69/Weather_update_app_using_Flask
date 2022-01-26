@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  
+  <h5>Below You can see the latest weather update for 10 major cities around the world! </h5>
+  <h6>Don't See your home city? Search for your city <a href="{{url_for ('get_location_update' )}}">here</a> ! This page auto refreshesh every 5 min to show the latest weather update.</h6>
+<table class="table">
+    <thead>
+      <tr>
+        <th class="table-dark" scope="col">City Number</th>
+        <th class="table-dark" scope="col">City</th>
+        <th class="table-dark" scope="col">Temperature</th>
+        <th class="table-dark" scope="col">Feelslike</th>
+        <th class="table-dark" scope="col">Humidity</th>
+        <th class="table-dark" scope="col">Wind Speed</th>
+        <th class="table-dark" scope="col">Sky Condition</th>
+      </tr>
+     
+    </thead>
+    <tbody>
+        {% for city in cities %} 
+      <tr>
+        <td class="table-primary">{{cities.index(city)+1}}</td>
+        <td class="table-primary">{{city}}</td>
+        <td class="table-primary">{{temperatures[cities.index(city)]}}&#176c</td>
+        <td class="table-primary">{{feels_like[cities.index(city)]}}&#176c</td>
+        <td class="table-primary">{{ humidities[cities.index(city)] }}</td>
+        <td class="table-primary">{{ wind[cities.index(city)] }}</td>
+        <td class="table-primary">{{ condition[cities.index(city)] }}</td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
